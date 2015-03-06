@@ -3,6 +3,7 @@
  */
 public class Maa {
     private int maa;
+    private int ips;
 
     public int getMaa() {
         return maa;
@@ -12,7 +13,20 @@ public class Maa {
         this.maa = maa;
     }
 
-    public Maa(int maa) {
-        this.maa = maa;
+    public void addMaa(int maa) {
+        this.maa += maa;
     }
+
+    public int getIps() {
+        return ips;
+    }
+
+    public Maa(int faktor) {
+        this.ips = faktor;
+    }
+
+    public int income() {
+        return maa * ips;
+    }
+
 }
