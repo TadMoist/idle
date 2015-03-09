@@ -6,12 +6,20 @@ import java.util.Scanner;
 
 public class Checker implements Runnable {
     Scanner sc = new Scanner(System.in);
-    @Override
+
     public void run() {
         while(true){
             String test = sc.nextLine();
             if (test.equals("")){
                 Main.setPressed(true);
+                System.out.println(this);
+                synchronized (Main.lõime) {
+                    try {
+                        Main.lõime.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
             else if (test.equals("exit")){
                 Main.setEnd(true);

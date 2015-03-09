@@ -10,9 +10,9 @@ public class Update {
 
     public static void Tick() {
         Main.payDay(Main.kokkuIncome() * tick);
-        System.out.println("--------------------");
-        System.out.println("Raha on hetkel: " + Main.getRaha() + " eurot.");
-        System.out.println("Kogumaad on hetkel: " + Main.kokkuMaad() + " ha.");
-        System.out.println("Kogu sissetulek on hetkel: " + Main.kokkuIncome() + " eur/t.");
+        System.out.println("--------------------" + "\n");
+        System.out.println("Raha on hetkel: " + Main.getRaha() + " eurot." + "\n");
+        System.out.println("Kogumaad on hetkel: " + Main.kokkuMaad() + " ha." + "\n");
+        System.out.println("Kogu sissetulek on hetkel: " + Main.kokkuIncome() + " eur/t." + "\n");
     }
 }

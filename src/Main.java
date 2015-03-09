@@ -1,15 +1,13 @@
-/**
- * Created by Janek Timmas on 6.03.2015.
- */
 public class Main {
     public static Maa tühiMaa = new Maa(1, 100);
     public static Maa karjaMaa = new Maa(10, 250);
     public static Maa põlluMaa = new Maa(50, 500);
     public static Maa hotellMaa = new Maa(100, 1000);
     private static int raha;
+    private static Menu menuu = new Menu();
     private static boolean pressed = false;
     private static boolean end = false;
-    private static Thread lõime = new Thread(new Checker());
+    public static final Thread lõime = new Thread(new Checker());
 
     public static void setEnd(boolean end) {
         Main.end = end;
@@ -37,9 +35,14 @@ public class Main {
             }
             if (end)
                 break;
-            /* SIIA tuleks kirjutada, mis peaks menüüs olema. */
-            System.out.println("LOL");
+            System.out.println(lõime);
+            System.out.println("hello");
+            menuu.menu();
+            menuu.maaom();
             pressed = false;
+            synchronized (lõime) {
+                lõime.notifyAll();
+            }
         }
     }
 
