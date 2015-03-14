@@ -22,6 +22,10 @@ public class Maa {
         return algIps;
     }
 
+    public int getAlgHind() {
+        return algHind;
+    }
+
     public Maa(int faktor, int algHind) {
         this.algIps = faktor;
         this.algHind = algHind;

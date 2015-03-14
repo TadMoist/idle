@@ -35,8 +35,7 @@ public class Main {
             }
             if (end)
                 break;
-            System.out.println(lõime);
-            System.out.println("hello");
+
             menuu.menu();
             menuu.maaom();
             pressed = false;

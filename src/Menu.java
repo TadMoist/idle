@@ -12,7 +12,7 @@ public class Menu {
         System.out.println("Kirjutage HOTELL, et avada turismi menüü.");
         System.out.println("Kirjutage MAAKLER, et osta maad juurde.");
         System.out.println("Kirjutage HELP, et saada abi ja lugeda instruktsioone");
-        System.out.println("Kirjutage TAGASI, et minna tagasi mängima.");
+        System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
     }
 
     public static void maaom(){
@@ -58,7 +58,7 @@ public class Menu {
             else if(rida.equalsIgnoreCase("maakler")){
                 System.out.println("MAAKLER");
                 System.out.println("Teil on hetkel " + Main.getRaha() + " eurot.");
-                System.out.println("Ühe hektar suuruse maatüki ostmine maksab " + Main.tühiMaa.cost() + "eurot.");
+                System.out.println("Ühe hektari suuruse maatüki ostmine maksab " + Main.tühiMaa.cost() + "eurot.");
                 System.out.println("Kirjutage OSTAN, et osta üks ha tühja maad.");
                 System.out.println("Kirjutage TAGASI, et minna tagasi mängima.");
             }
