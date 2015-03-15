@@ -52,7 +52,7 @@ public class Menu {
                 System.out.println("Te mängite hetkel idle mängu. Tegemist on mänguga, mis mängib ennast ise.");
                 System.out.println("Mängu eesmärgiks on kogda võimalikult palju raha ja ehitada võimalikult suur linn.");
                 System.out.println("Teie saate eesmärkide täitmisele kaasa aidata olemasoleva maa-ala suurendamise ja erineva rakendamisega.");
-                System.out.println("Kirjutage TAGASI, et minna tagasi mängima.");
+                System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
                 System.out.println("Ilusat mängu!");
             }
             else if(rida.equalsIgnoreCase("maakler")){
