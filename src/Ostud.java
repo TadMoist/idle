@@ -36,6 +36,7 @@ public class Ostud {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("tühi")) {
@@ -43,7 +44,14 @@ public class Ostud {
                         Main.karjaMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    } else {
+                    }
+
+                    else if (tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
+                        break;
+                    }
+
+                    else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -71,6 +79,7 @@ public class Ostud {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("tühi")) {
@@ -78,7 +87,13 @@ public class Ostud {
                         Main.põlluMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    } else {
+                    }
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
+                        break;
+                    }
+
+                    else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -98,6 +113,7 @@ public class Ostud {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Karjamaa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("karja")) {
@@ -105,7 +121,13 @@ public class Ostud {
                         Main.põlluMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
-                    } else {
+                    }
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
+                        break;
+                    }
+
+                    else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -125,6 +147,7 @@ public class Ostud {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa, karjamaa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("tühi")) {
@@ -138,7 +161,13 @@ public class Ostud {
                         Main.karjaMaa.addMaa(-kogus);
                         break;
 
-                    } else {
+                    }
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
+                        break;
+                    }
+
+                    else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -167,6 +196,7 @@ public class Ostud {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("tühi")) {
@@ -174,7 +204,13 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    } else {
+                    }
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
+                        break;
+                    }
+
+                    else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -198,6 +234,7 @@ public class Ostud {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - karjamaa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("karja")) {
@@ -205,7 +242,13 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
-                    } else {
+                    }
+                    else if (tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
+                        break;
+                    }
+
+                    else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -228,6 +271,7 @@ public class Ostud {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - põllumaa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("põllu")) {
@@ -235,7 +279,12 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
-                    } else {
+                    }
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
+                        break;
+                    }
+                    else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -259,6 +308,7 @@ public class Ostud {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa, karjamaa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
 
@@ -272,6 +322,11 @@ public class Ostud {
                         Main.payDay(hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
+                        break;
+                    }
+
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
                         break;
                     }
 
@@ -304,7 +359,8 @@ public class Ostud {
             else{
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Tühi maa,põllumaa");
+                    System.out.println("Valikus - Tühi maa, põllumaa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
 
@@ -318,6 +374,11 @@ public class Ostud {
                         Main.payDay(hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
+                        break;
+                    }
+
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
                         break;
                     }
                     else {
@@ -348,7 +409,8 @@ public class Ostud {
             else{
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - karjamaa,põllumaa");
+                    System.out.println("Valikus - karjamaa, põllumaa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
 
@@ -364,6 +426,12 @@ public class Ostud {
                         Main.põlluMaa.addMaa(-kogus);
                         break;
                     }
+
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
+                        break;
+                    }
+
 
 
                     else {
@@ -394,7 +462,8 @@ public class Ostud {
             else{
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Tühi maa,karjamaa,põllumaa");
+                    System.out.println("Valikus - Tühi maa, karjamaa, põllumaa");
+                    System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
 
@@ -415,6 +484,11 @@ public class Ostud {
                         Main.payDay(hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
+                        break;
+                    }
+
+                    else if(tüüp.toLowerCase().contains("exit")){
+                        Menu.menu();
                         break;
                     }
 
