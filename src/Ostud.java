@@ -7,6 +7,7 @@ public class Ostud {
         int tühiSumma = 0;
         for (int i = 0; i < kogus; i++) {
             tühiSumma += (int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i));
+            Main.tühiMaa.setAlgHind(tühiSumma);
         }
 
         if (tühiSumma >= Main.getRaha()) {
@@ -14,6 +15,7 @@ public class Ostud {
             System.out.println(Main.getRaha());
             System.out.println("Pole piisavalt raha tehinguks");
             System.out.println("Puudu jääb: " + (tühiSumma - Main.getRaha()) + "eurot.");
+            Main.tühiMaa.setAlgHind();//Siia ei oska mingit argumenti panna
         } else {
             Main.payDay(-tühiSumma);
             Main.tühiMaa.addMaa(kogus);

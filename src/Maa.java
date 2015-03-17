@@ -5,6 +5,7 @@ public class Maa {
     private int maa;
     private int algIps;
     private int algHind;
+    private int uusAlgHind;
 
     public int getMaa() {
         return maa;
@@ -25,6 +26,8 @@ public class Maa {
     public int getAlgHind() {
         return algHind;
     }
+
+    public void setAlgHind(int Hind) {this.algHind = Hind;}
 
     public Maa(int faktor, int algHind) {
         this.algIps = faktor;
