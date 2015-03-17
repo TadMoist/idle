@@ -31,7 +31,6 @@ public class Ostud {
                 karjamaaSumma += (int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i));
                 Main.karjaMaa.setAlgHind((int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i)));
             }
-            System.out.println(karjamaaSumma);
             if (karjamaaSumma > Main.getRaha()) {
                 Main.karjaMaa.setAlgHind(temporary);
                 System.out.println("Pole piisavalt raha tehinguks");
