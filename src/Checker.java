@@ -12,7 +12,6 @@ public class Checker implements Runnable {
             String test = sc.nextLine();
             if (test.equals("")){
                 Main.setPressed(true);
-                System.out.println(this);
                 synchronized (Main.lõime) {
                     try {
                         Main.lõime.wait();

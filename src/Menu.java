@@ -16,34 +16,34 @@ public class Menu {
     }
 
     public static void maaom(){
+        Maa meeles = Main.tühiMaa;
         while (true) {
             Scanner sc = new Scanner(System.in);
             String rida = sc.nextLine();
             if (rida.equalsIgnoreCase("exit")){
                 break;
             }
+            else if (rida.equalsIgnoreCase("tagasi")){
+                menu();
+            }
             else if (rida.contains("ostan")){
                 String[] temp = rida.split(" ");
-                for (int i = 0; i < Integer.parseInt(temp[1]); i++) {
-                    if (Main.getRaha() >= Main.tühiMaa.cost()) {
-                        Main.tühiMaa.addMaa(1);
-                        Main.payDay(-Main.tühiMaa.cost() + 1);
-                    }
-                }
+                Ostud.tühimaaOst(Integer.parseInt(temp[1]));
                 inf();
             }
             else if (rida.toLowerCase().contains("muudan")){
-                System.out.println("Kui te tahate tühja maad muuta karjamaaks kirjutage TÜHI.");
-                System.out.println("Kui te tahate põllumaad muuta karjamaaks kirjutage PÕLD.");
-                System.out.println("Kui te tahate hotellimaad muuta karjamaaks kirjutage HOTELL.");
-                if (rida.toLowerCase().contains("tühi")){
-                    Main.karjaMaa.addMaa(1);
-                    Main.tühiMaa.addMaa(-1);
-                    Main.payDay(-Main.karjaMaa.cost()+1);
-                    inf();
+                String[] temp = rida.split(" ");
+                if (meeles == Main.karjaMaa){
+                    Ostud.karjamaaOst(Integer.parseInt(temp[1]));
                 }
-            }
-            else if (rida.equalsIgnoreCase("maa")){
+                else if (meeles == Main.põlluMaa){
+                    Ostud.põllumaaOst(Integer.parseInt(temp[1]));
+                }
+                else if (meeles == Main.hotellMaa){
+                    Ostud.hotelliOst(Integer.parseInt(temp[1]));
+                }
+                inf();
+            } else if (rida.equalsIgnoreCase("maa")){
                 inf();
             }
             else if(rida.equalsIgnoreCase("info")){
@@ -53,26 +53,31 @@ public class Menu {
                 System.out.println("Mängu eesmärgiks on kogda võimalikult palju raha ja ehitada võimalikult suur linn.");
                 System.out.println("Teie saate eesmärkide täitmisele kaasa aidata olemasoleva maa-ala suurendamise ja erineva rakendamisega.");
                 System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
+                System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
                 System.out.println("Ilusat mängu!");
             }
             else if(rida.equalsIgnoreCase("maakler")){
                 System.out.println("MAAKLER");
                 System.out.println("Teil on hetkel " + Main.getRaha() + " eurot.");
                 System.out.println("Ühe hektari suuruse maatüki ostmine maksab " + Main.tühiMaa.cost() + "eurot.");
-                System.out.println("Kirjutage OSTAN, et osta üks ha tühja maad.");
-                System.out.println("Kirjutage TAGASI, et minna tagasi mängima.");
+                System.out.println("Kirjutage OSTAN + ha arv, et osta üks ha tühja maad.");
+                System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
+                System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
             }
             else if (rida.equalsIgnoreCase("kari")){
                 System.out.println("KARJAMAA");
                 tekst(Main.karjaMaa);
+                meeles = Main.karjaMaa;
             }
             else if (rida.equalsIgnoreCase("põld")){
                 System.out.println("PÕLLUMAA");
                 tekst(Main.põlluMaa);
+                meeles = Main.põlluMaa;
             }
             else if (rida.equalsIgnoreCase("hotell")){
                 System.out.println("HOTELLID");
                 tekst(Main.hotellMaa);
+                meeles = Main.hotellMaa;
             }
         }
     }
@@ -88,7 +93,8 @@ public class Menu {
         System.out.println("Põllumaa toodab hetkel " + Main.põlluMaa.income() + " eurot tunnis.");
         System.out.println("Hotellide kvartal toodab hetkel " + Main.hotellMaa.income() + " eurot tunnis.");
         System.out.println("Terve maatükk toodab hetkel " + Main.kokkuIncome() + " eurot tunnis.");
-        System.out.println("Kirjutage TAGASI, et minna tagasi mängima.");
+        System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
+        System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
     }
 
     public static void tekst(Maa tüüp){
@@ -99,9 +105,8 @@ public class Menu {
         System.out.println("Teil on hetkel " + Main.tühiMaa.getMaa() + " ha vaba maad.");
         System.out.println("Ühe ha selleks maaks muutmine maksaks " + tüüp.cost() + " eurot.");
         System.out.println("Kogu maatüki selleks maaks muutmine maksaks " + tüüp.cost() * Main.kokkuMaad() + " eurot.");
-        System.out.println("Kirjutage MUUDAN, et muuta osa maatükist selleks maaks.");
-        System.out.println("Kirjutage TAGASI, et minna tagasi mängima.");
+        System.out.println("Kirjutage MUUDAN + ha arv, et muuta osa maatükist selleks maaks.");
+        System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
+        System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
     }
 }
-
-

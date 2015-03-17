@@ -9,7 +9,9 @@ public class Ostud {
             tühiSumma = (int) (tühiSumma + (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i)));
         }
 
-        if (tühiSumma > Main.getRaha()) {
+        if (tühiSumma >= Main.getRaha()) {
+            System.out.println(tühiSumma);
+            System.out.println(Main.getRaha());
             System.out.println("Pole piisavalt raha tehinguks");
             System.out.println("Puudu jääb: " + (tühiSumma - Main.getRaha()) + "eurot.");
         } else {
@@ -28,7 +30,7 @@ public class Ostud {
             for (int i = 0; i <= kogus; i++) {
                 karjamaaSumma = (int) (karjamaaSumma + (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i)));
             }
-
+            System.out.println(karjamaaSumma);
             if (karjamaaSumma > Main.getRaha()) {
                 System.out.println("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (karjamaaSumma - Main.getRaha()) + "eurot.");

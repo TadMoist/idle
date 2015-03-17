@@ -4,7 +4,6 @@ public class Main {
     public static Maa põlluMaa = new Maa(50, 500);
     public static Maa hotellMaa = new Maa(100, 1000);
     private static int raha;
-    private static Menu menuu = new Menu();
     private static boolean pressed = false;
     private static boolean end = false;
     public static final Thread lõime = new Thread(new Checker());
@@ -36,8 +35,8 @@ public class Main {
             if (end)
                 break;
 
-            menuu.menu();
-            menuu.maaom();
+            Menu.menu();
+            Menu.maaom();
             pressed = false;
             synchronized (lõime) {
                 lõime.notifyAll();
@@ -46,9 +45,10 @@ public class Main {
     }
 
     public static void newGame() {
-        Main.raha = 0;
+        Main.raha = 10000;
         tühiMaa.setMaa(1);
         lõime.start();
+        Update.Tick();
     }
 
     public static int kokkuMaad() {
