@@ -60,7 +60,7 @@ public class Menu {
                 System.out.println("MAAKLER");
                 System.out.println("Teil on hetkel " + Main.getRaha() + " eurot.");
                 System.out.println("Ühe hektari suuruse maatüki ostmine maksab " + Main.tühiMaa.cost() + "eurot.");
-                System.out.println("Kirjutage OSTAN + ha arv, et osta üks ha tühja maad.");
+                System.out.println("Kirjutage OSTAN + HA ARV, et osta üks ha tühja maad.");
                 System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
                 System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
             }
@@ -105,7 +105,7 @@ public class Menu {
         System.out.println("Teil on hetkel " + Main.tühiMaa.getMaa() + " ha vaba maad.");
         System.out.println("Ühe ha selleks maaks muutmine maksaks " + tüüp.cost() + " eurot.");
         System.out.println("Kogu maatüki selleks maaks muutmine maksaks " + tüüp.cost() * Main.kokkuMaad() + " eurot.");
-        System.out.println("Kirjutage MUUDAN + ha arv, et muuta osa maatükist selleks maaks.");
+        System.out.println("Kirjutage MUUDAN + HA ARV, et muuta osa maatükist selleks maaks.");
         System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
         System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
     }
