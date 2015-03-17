@@ -5,8 +5,8 @@ public class Ostud {
 
     public static void tühimaaOst(int kogus) {
         int tühiSumma = 0;
-        for (int i = 0; i <= kogus; i++) {
-            tühiSumma = (int) (tühiSumma + (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i)));
+        for (int i = 0; i < kogus; i++) {
+            tühiSumma += (int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i));
         }
 
         if (tühiSumma >= Main.getRaha()) {
@@ -15,7 +15,7 @@ public class Ostud {
             System.out.println("Pole piisavalt raha tehinguks");
             System.out.println("Puudu jääb: " + (tühiSumma - Main.getRaha()) + "eurot.");
         } else {
-            Main.payDay(tühiSumma);
+            Main.payDay(-tühiSumma);
             Main.tühiMaa.addMaa(kogus);
         }
 
@@ -27,8 +27,8 @@ public class Ostud {
 
             int karjamaaSumma = 0;
 
-            for (int i = 0; i <= kogus; i++) {
-                karjamaaSumma = (int) (karjamaaSumma + (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                karjamaaSumma += (int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i));
             }
             System.out.println(karjamaaSumma);
             if (karjamaaSumma > Main.getRaha()) {
@@ -42,7 +42,7 @@ public class Ostud {
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("tühi")) {
-                        Main.payDay(karjamaaSumma);
+                        Main.payDay(-karjamaaSumma);
                         Main.karjaMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
@@ -70,8 +70,8 @@ public class Ostud {
         if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa()) {
 
             int põllumaaSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                põllumaaSumma = (int) (põllumaaSumma + (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                põllumaaSumma += (int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i));
             }
 
             if (põllumaaSumma > Main.getRaha()) {
@@ -85,7 +85,7 @@ public class Ostud {
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("tühi")) {
-                        Main.payDay(põllumaaSumma);
+                        Main.payDay(-põllumaaSumma);
                         Main.põlluMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
@@ -104,8 +104,8 @@ public class Ostud {
         } else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa()) {
 
             int põllumaaSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                põllumaaSumma = (int) (põllumaaSumma + (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                põllumaaSumma += (int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i));
             }
 
             if (põllumaaSumma > Main.getRaha()) {
@@ -119,7 +119,7 @@ public class Ostud {
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("karja")) {
-                        Main.payDay(põllumaaSumma);
+                        Main.payDay(-põllumaaSumma);
                         Main.põlluMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
@@ -138,8 +138,8 @@ public class Ostud {
         } else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa()) {
 
             int põllumaaSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                põllumaaSumma = (int) (põllumaaSumma + (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                põllumaaSumma += (int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i));
             }
 
             if (põllumaaSumma > Main.getRaha()) {
@@ -153,12 +153,12 @@ public class Ostud {
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("tühi")) {
-                        Main.payDay(põllumaaSumma);
+                        Main.payDay(-põllumaaSumma);
                         Main.põlluMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
                     } else if (tüüp.toLowerCase().contains("karja")) {
-                        Main.payDay(põllumaaSumma);
+                        Main.payDay(-põllumaaSumma);
                         Main.põlluMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
@@ -185,8 +185,8 @@ public class Ostud {
         if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()){
 
             int hotelliSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-            hotelliSumma = (int) (hotelliSumma + (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+            hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
         }
 
             if (hotelliSumma > Main.getRaha()) {
@@ -202,7 +202,7 @@ public class Ostud {
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("tühi")) {
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
@@ -225,8 +225,8 @@ public class Ostud {
         else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                hotelliSumma = (int) (hotelliSumma + (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
             }
 
             if (hotelliSumma > Main.getRaha()) {
@@ -240,7 +240,7 @@ public class Ostud {
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("karja")) {
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
@@ -262,8 +262,8 @@ public class Ostud {
        else if (kogus > Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                hotelliSumma = (int) (hotelliSumma + (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
             }
 
             if (hotelliSumma > Main.getRaha()) {
@@ -277,7 +277,7 @@ public class Ostud {
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
                     if (tüüp.toLowerCase().contains("põllu")) {
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
@@ -297,8 +297,8 @@ public class Ostud {
        else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()){
 
             int hotelliSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                hotelliSumma = (int) (hotelliSumma + (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
             }
 
             if (hotelliSumma > Main.getRaha()) {
@@ -315,13 +315,13 @@ public class Ostud {
                     String tüüp = sc.nextLine();
 
                     if (tüüp.toLowerCase().contains("tühi")) {
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
                     }
                     else if(tüüp.toLowerCase().contains("karja")){
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
@@ -349,8 +349,8 @@ public class Ostud {
        else if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()){
 
             int hotelliSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                hotelliSumma = (int) (hotelliSumma + (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
             }
 
             if (hotelliSumma > Main.getRaha()) {
@@ -367,13 +367,13 @@ public class Ostud {
                     String tüüp = sc.nextLine();
 
                     if (tüüp.toLowerCase().contains("tühi")) {
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
                     }
                     else if(tüüp.toLowerCase().contains("põllu")){
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
@@ -399,8 +399,8 @@ public class Ostud {
        else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()){
 
             int hotelliSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                hotelliSumma = (int) (hotelliSumma + (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
             }
 
             if (hotelliSumma > Main.getRaha()) {
@@ -417,13 +417,13 @@ public class Ostud {
                     String tüüp = sc.nextLine();
 
                     if (tüüp.toLowerCase().contains("karja")) {
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
                     }
                     else if(tüüp.toLowerCase().contains("põllu")){
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
@@ -452,8 +452,8 @@ public class Ostud {
        else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()){
 
             int hotelliSumma = 0;
-            for (int i = 0; i <= kogus; i++) {
-                hotelliSumma = (int) (hotelliSumma + (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+            for (int i = 0; i < kogus; i++) {
+                hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
             }
 
             if (hotelliSumma > Main.getRaha()) {
@@ -470,20 +470,20 @@ public class Ostud {
                     String tüüp = sc.nextLine();
 
                     if (tüüp.toLowerCase().contains("tühi")) {
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
                     }
                     else if(tüüp.toLowerCase().contains("karja")){
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
                     }
 
                     else if (tüüp.toLowerCase().contains("põllu")){
-                        Main.payDay(hotelliSumma);
+                        Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
