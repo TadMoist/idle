@@ -25,13 +25,15 @@ public class Ostud {
     public static void karjamaaOst(int kogus) {
 
         if (kogus <= Main.tühiMaa.getMaa()) {
-
+            int temporary = Main.karjaMaa.getAlgHind();
             int karjamaaSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 karjamaaSumma += (int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i));
+                Main.karjaMaa.setAlgHind((int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i)));
             }
             System.out.println(karjamaaSumma);
             if (karjamaaSumma > Main.getRaha()) {
+                Main.karjaMaa.setAlgHind(temporary);
                 System.out.println("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (karjamaaSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -64,13 +66,15 @@ public class Ostud {
     public static void põllumaaOst(int kogus) {
 
         if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa()) {
-
+            int temporary = Main.põlluMaa.getAlgHind();
             int põllumaaSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 põllumaaSumma += (int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i));
+                Main.põlluMaa.setAlgHind((int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i)));
             }
 
             if (põllumaaSumma > Main.getRaha()) {
+                Main.põlluMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (põllumaaSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -95,13 +99,15 @@ public class Ostud {
                 }
             }
         } else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa()) {
-
+            int temporary = Main.põlluMaa.getAlgHind();
             int põllumaaSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 põllumaaSumma += (int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i));
+                Main.põlluMaa.setAlgHind((int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i)));
             }
 
             if (põllumaaSumma > Main.getRaha()) {
+                Main.põlluMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (põllumaaSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -126,13 +132,15 @@ public class Ostud {
                 }
             }
         } else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa()) {
-
+            int temporary = Main.põlluMaa.getAlgHind();
             int põllumaaSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 põllumaaSumma += (int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i));
+                Main.tühiMaa.setAlgHind((int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i)));
             }
 
             if (põllumaaSumma > Main.getRaha()) {
+                Main.põlluMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (põllumaaSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -170,13 +178,15 @@ public class Ostud {
     public static void hotelliOst(int kogus) {
 
         if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
-
+            int temporary = Main.hotellMaa.getAlgHind();
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
+                Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
             }
 
             if (hotelliSumma > Main.getRaha()) {
+                Main.hotellMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -203,13 +213,15 @@ public class Ostud {
                 }
             }
         } else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
-
+            int temporary = Main.hotellMaa.getAlgHind();
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
+                Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
             }
 
             if (hotelliSumma > Main.getRaha()) {
+                Main.hotellMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -235,13 +247,15 @@ public class Ostud {
                 }
             }
         } else if (kogus > Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
-
+            int temporary = Main.hotellMaa.getAlgHind();
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
+                Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
             }
 
             if (hotelliSumma > Main.getRaha()) {
+                Main.hotellMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -266,13 +280,15 @@ public class Ostud {
                 }
             }
         } else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
-
+            int temporary = Main.hotellMaa.getAlgHind();
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
+                Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
             }
 
             if (hotelliSumma > Main.getRaha()) {
+                Main.hotellMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -308,13 +324,15 @@ public class Ostud {
             }
 
         } else if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
-
+            int temporary = Main.hotellMaa.getAlgHind();
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
+                Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
             }
 
             if (hotelliSumma > Main.getRaha()) {
+                Main.hotellMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -350,13 +368,15 @@ public class Ostud {
             }
 
         } else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
-
+            int temporary = Main.hotellMaa.getAlgHind();
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
+                Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
             }
 
             if (hotelliSumma > Main.getRaha()) {
+                Main.hotellMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
             } else {
@@ -392,13 +412,15 @@ public class Ostud {
             }
 
         } else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
-
+            int temporary = Main.hotellMaa.getAlgHind();
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
                 hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
+                Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
             }
 
             if (hotelliSumma > Main.getRaha()) {
+                Main.hotellMaa.setAlgHind(temporary);
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
             } else {

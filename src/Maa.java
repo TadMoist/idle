@@ -5,7 +5,7 @@ public class Maa {
     private int maa;
     private int algIps;
     private int algHind;
-    private int uusAlgHind;
+
 
     public int getMaa() {
         return maa;
