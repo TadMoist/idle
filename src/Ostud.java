@@ -5,17 +5,16 @@ public class Ostud {
 
     public static void tühimaaOst(int kogus) {
         int tühiSumma = 0;
+        int temporary = Main.tühiMaa.getAlgHind();
         for (int i = 0; i < kogus; i++) {
             tühiSumma += (int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i));
-            Main.tühiMaa.setAlgHind(tühiSumma);
+            Main.tühiMaa.setAlgHind((int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i)));
         }
 
         if (tühiSumma >= Main.getRaha()) {
-            System.out.println(tühiSumma);
-            System.out.println(Main.getRaha());
+            Main.tühiMaa.setAlgHind(temporary);
             System.out.println("Pole piisavalt raha tehinguks");
             System.out.println("Puudu jääb: " + (tühiSumma - Main.getRaha()) + "eurot.");
-            Main.tühiMaa.setAlgHind();//Siia ei oska mingit argumenti panna
         } else {
             Main.payDay(-tühiSumma);
             Main.tühiMaa.addMaa(kogus);
@@ -28,7 +27,6 @@ public class Ostud {
         if (kogus <= Main.tühiMaa.getMaa()) {
 
             int karjamaaSumma = 0;
-
             for (int i = 0; i < kogus; i++) {
                 karjamaaSumma += (int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i));
             }
@@ -48,14 +46,10 @@ public class Ostud {
                         Main.karjaMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    }
-
-                    else if (tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-                    else {
+                    } else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -91,13 +85,10 @@ public class Ostud {
                         Main.põlluMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-                    else {
+                    } else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -125,13 +116,10 @@ public class Ostud {
                         Main.põlluMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-                    else {
+                    } else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -165,13 +153,10 @@ public class Ostud {
                         Main.karjaMaa.addMaa(-kogus);
                         break;
 
-                    }
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-                    else {
+                    } else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -184,19 +169,17 @@ public class Ostud {
 
     public static void hotelliOst(int kogus) {
 
-        if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()){
+        if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
-            hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
-        }
+                hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
+            }
 
             if (hotelliSumma > Main.getRaha()) {
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
-            }
-
-            else{
+            } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa");
@@ -208,13 +191,10 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-                    else {
+                    } else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
@@ -222,9 +202,7 @@ public class Ostud {
 
                 }
             }
-        }
-
-        else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
+        } else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
@@ -246,22 +224,17 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if (tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-                    else {
+                    } else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
 
                 }
             }
-        }
-
-       else if (kogus > Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
+        } else if (kogus > Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
@@ -283,20 +256,16 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-                    else {
+                    } else {
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
                     }
                 }
             }
-        }
-
-       else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()){
+        } else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
@@ -306,9 +275,7 @@ public class Ostud {
             if (hotelliSumma > Main.getRaha()) {
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
-            }
-
-            else{
+            } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa, karjamaa");
@@ -321,21 +288,15 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if(tüüp.toLowerCase().contains("karja")){
+                    } else if (tüüp.toLowerCase().contains("karja")) {
                         Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
-                    }
-
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-
-                    else {
+                    } else {
 
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
@@ -346,9 +307,7 @@ public class Ostud {
 
             }
 
-        }
-
-       else if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()){
+        } else if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
@@ -358,9 +317,7 @@ public class Ostud {
             if (hotelliSumma > Main.getRaha()) {
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
-            }
-
-            else{
+            } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa, põllumaa");
@@ -373,19 +330,15 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if(tüüp.toLowerCase().contains("põllu")){
+                    } else if (tüüp.toLowerCase().contains("põllu")) {
                         Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
-                    }
-
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-                    else {
+                    } else {
 
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
@@ -396,9 +349,7 @@ public class Ostud {
 
             }
 
-        }
-
-       else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()){
+        } else if (kogus > Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
@@ -408,9 +359,7 @@ public class Ostud {
             if (hotelliSumma > Main.getRaha()) {
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
-            }
-
-            else{
+            } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - karjamaa, põllumaa");
@@ -423,22 +372,15 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if(tüüp.toLowerCase().contains("põllu")){
+                    } else if (tüüp.toLowerCase().contains("põllu")) {
                         Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
-                    }
-
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-
-
-                    else {
+                    } else {
 
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
@@ -449,9 +391,7 @@ public class Ostud {
 
             }
 
-        }
-
-       else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()){
+        } else if (kogus <= Main.tühiMaa.getMaa() && kogus <= Main.karjaMaa.getMaa() && kogus <= Main.põlluMaa.getMaa()) {
 
             int hotelliSumma = 0;
             for (int i = 0; i < kogus; i++) {
@@ -461,9 +401,7 @@ public class Ostud {
             if (hotelliSumma > Main.getRaha()) {
                 System.out.print("Pole piisavalt raha tehinguks");
                 System.out.println("Puudu jääb: " + (hotelliSumma - Main.getRaha()) + "eurot.");
-            }
-
-            else{
+            } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
                     System.out.println("Valikus - Tühi maa, karjamaa, põllumaa");
@@ -476,28 +414,20 @@ public class Ostud {
                         Main.hotellMaa.addMaa(kogus);
                         Main.tühiMaa.addMaa(-kogus);
                         break;
-                    }
-                    else if(tüüp.toLowerCase().contains("karja")){
+                    } else if (tüüp.toLowerCase().contains("karja")) {
                         Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.karjaMaa.addMaa(-kogus);
                         break;
-                    }
-
-                    else if (tüüp.toLowerCase().contains("põllu")){
+                    } else if (tüüp.toLowerCase().contains("põllu")) {
                         Main.payDay(-hotelliSumma);
                         Main.hotellMaa.addMaa(kogus);
                         Main.põlluMaa.addMaa(-kogus);
                         break;
-                    }
-
-                    else if(tüüp.toLowerCase().contains("exit")){
+                    } else if (tüüp.toLowerCase().contains("exit")) {
                         Menu.menu();
                         break;
-                    }
-
-
-                    else {
+                    } else {
 
                         System.out.println("Viga!");
                         System.out.println("Ei saanud aru, millist maad muuta!");
@@ -508,9 +438,7 @@ public class Ostud {
 
             }
 
-        }
-
-        else{
+        } else {
             System.out.println("Pole piisavalt maad, mida muuta!");
         }
     }
