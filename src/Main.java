@@ -48,7 +48,6 @@ public class Main {
         Main.raha = 10000;
         tühiMaa.setMaa(1);
         lõime.start();
-        Update.Tick();
     }
 
     public static int kokkuMaad() {
