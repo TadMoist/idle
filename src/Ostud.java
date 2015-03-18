@@ -79,7 +79,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Tühi maa");
+                    System.out.println("Valikus - TÜHI maa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -112,7 +112,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Karjamaa");
+                    System.out.println("Valikus - KARJAmaa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -145,7 +145,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Tühi maa, karjamaa");
+                    System.out.println("Valikus - TÜHI maa, karjamaa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -191,7 +191,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Tühi maa");
+                    System.out.println("Valikus - TÜHI maa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -226,7 +226,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - karjamaa");
+                    System.out.println("Valikus - KARJAmaa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -260,7 +260,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - põllumaa");
+                    System.out.println("Valikus - PÕLLUmaa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -293,7 +293,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Tühi maa, karjamaa");
+                    System.out.println("Valikus - TÜHI maa, KARJAmaa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -337,7 +337,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Tühi maa, põllumaa");
+                    System.out.println("Valikus - TÜHI maa, PÕLLUmaa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -381,7 +381,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - karjamaa, põllumaa");
+                    System.out.println("Valikus - KARJAmaa, PÕLLUmaa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
@@ -425,7 +425,7 @@ public class Ostud {
             } else {
                 while (true) {
                     System.out.println("Sisesta millist maad muuta: ");
-                    System.out.println("Valikus - Tühi maa, karjamaa, põllumaa");
+                    System.out.println("Valikus - TÜHI maa, KARJAmaa, PÕLLUmaa");
                     System.out.println("Kirjuta EXIT, et kuvada menüü.");
                     Scanner sc = new Scanner(System.in);
                     String tüüp = sc.nextLine();
