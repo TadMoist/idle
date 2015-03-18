@@ -4,6 +4,7 @@ public class Main {
     public static Maa põlluMaa = new Maa(50, 500);
     public static Maa hotellMaa = new Maa(100, 1000);
     private static int raha;
+
     private static boolean pressed = false;
     private static boolean end = false;
     public static final Thread lõime = new Thread(new Checker());
