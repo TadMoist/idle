@@ -266,6 +266,7 @@ public class Main extends Application{
         mainbp.setMinWidth(250);
 
         Text  sissetulekSek = new Text(Integer.toString(Main.kokkuIncome()));
+        sissetulekSek.textProperty().bind(Property.sissetulekProperty);
 
 
 
@@ -280,7 +281,7 @@ public class Main extends Application{
 
         Label tuhimaa = new Label("TUHIMAA");
         Text tuhimaaHaArv = new Text(Integer.toString(tühiMaa.getMaa()));
-        tuhimaaHaArv.textProperty().bind(Property.sissetulekProperty);
+
 
         Text tuhimaaHaSek = new Text(Integer.toString(tühiMaa.getAlgIps()));
 
