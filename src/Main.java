@@ -1,8 +1,6 @@
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.application.Platform;
+
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -42,6 +40,8 @@ public class Main extends Application{
     public static void payDay(int x) {
         raha += x;
     }
+
+
 
     public void maad(HBox mainh,Label tuupMaa, Text haArv, Text haSek, Text maaSek, Text maaHind, Text saadOsta){
         GridPane maa = new GridPane();
@@ -265,9 +265,7 @@ public class Main extends Application{
         BorderPane mainbp = new BorderPane();
         mainbp.setMinWidth(250);
 
-        Text  sissetulekSek = new Text(Integer.toString(Main.kokkuIncome()));
-        sissetulekSek.textProperty().bind(Property.sissetulekProperty);
-
+        final Text  sissetulekSek = new Text("1");
 
 
 
@@ -280,42 +278,42 @@ public class Main extends Application{
 
 
         Label tuhimaa = new Label("TUHIMAA");
-        Text tuhimaaHaArv = new Text(Integer.toString(tühiMaa.getMaa()));
+        final Text tuhimaaHaArv = new Text("0");
 
 
-        Text tuhimaaHaSek = new Text(Integer.toString(tühiMaa.getAlgIps()));
+        final Text tuhimaaHaSek = new Text("0");
 
-        Text tuhimaaSek = new Text(Integer.toString(tühiMaa.income()));
-        Text tuhimaaHind = new Text(Integer.toString(tühiMaa.cost()));
-        Text tuhimaaSaadOsta = new Text(Integer.toString(getRaha()/tühiMaa.cost()));
+        final Text tuhimaaSek = new Text("0");
+        final Text tuhimaaHind = new Text("0");
+        Text tuhimaaSaadOsta = new Text("0");
 
         maad(mainh,tuhimaa,tuhimaaHaArv, tuhimaaHaSek, tuhimaaSek, tuhimaaHind, tuhimaaSaadOsta);
 
         Label karjamaa = new Label("KARJAMAA");
-        Text karjamaaHaArv = new Text(Integer.toString(karjaMaa.getMaa()));
+        final Text karjamaaHaArv = new Text("0");
 
-        Text karjamaaHaSek = new Text(Integer.toString(karjaMaa.getAlgIps()));
-        Text karjamaaSek = new Text(Integer.toString(karjaMaa.income()));
-        Text karjamaaHind = new Text(Integer.toString(karjaMaa.cost()));
-        Text karjamaaSaadOsta = new Text("0");
+        final Text karjamaaHaSek = new Text("0");
+        final Text karjamaaSek = new Text("0");
+        final Text karjamaaHind = new Text("0");
+        final Text karjamaaSaadOsta = new Text("0");
 
         maad(mainh,karjamaa,karjamaaHaArv, karjamaaHaSek, karjamaaSek, karjamaaHind, karjamaaSaadOsta);
 
         Label pollumaa = new Label("POLLUMAA");
-        Text pollumaaHaArv = new Text(Integer.toString(põlluMaa.getMaa()));
-        Text pollumaaHaSek = new Text(Integer.toString(põlluMaa.getAlgIps()));
-        Text pollumaaSek = new Text(Integer.toString(põlluMaa.income()));
-        Text pollumaaHind = new Text(Integer.toString(põlluMaa.cost()));
-        Text pollumaaSaadOsta = new Text("0");
+        final Text pollumaaHaArv = new Text("0");
+        final Text pollumaaHaSek = new Text("0");
+        final Text pollumaaSek = new Text("0");
+        final Text pollumaaHind = new Text("0");
+        final Text pollumaaSaadOsta = new Text("0");
 
         maad(mainh,pollumaa,pollumaaHaArv, pollumaaHaSek, pollumaaSek, pollumaaHind, pollumaaSaadOsta);
 
         Label hotellimaa = new Label("HOTELLIMAA");
-        Text hotellimaaHaArv = new Text(Integer.toString(hotellMaa.getMaa()));
-        Text hotellimaaHaSek = new Text(Integer.toString(hotellMaa.getAlgIps()));
-        Text hotellimaaSek = new Text(Integer.toString(hotellMaa.income()));
-        Text hotellimaaHind = new Text(Integer.toString(hotellMaa.cost()));
-        Text hotellimaaSaadOsta = new Text("0");
+        final Text hotellimaaHaArv = new Text("0");
+        final Text hotellimaaHaSek = new Text("0");
+        final Text hotellimaaSek = new Text("0");
+        final Text hotellimaaHind = new Text("0");
+        final Text hotellimaaSaadOsta = new Text("0");
 
         maad(mainh,hotellimaa,hotellimaaHaArv, hotellimaaHaSek, hotellimaaSek, hotellimaaHind, hotellimaaSaadOsta);
 
@@ -334,6 +332,8 @@ public class Main extends Application{
             }
         });
 
+
+
         new Thread()  {
             @Override
             public void run() {
@@ -343,7 +343,35 @@ public class Main extends Application{
                         int tick = Update.getTick();
                         Update.Tick();
                         Thread.sleep(tick * 1000);
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                sissetulekSek.setText(Integer.toString(Main.kokkuIncome()));
 
+                                tuhimaaHaArv.setText(Integer.toString(tühiMaa.getMaa()));
+                                tuhimaaHaSek.setText(Integer.toString(tühiMaa.getAlgIps()));
+                                tuhimaaHind.setText(Integer.toString(tühiMaa.cost()));
+                                tuhimaaSek.setText(Integer.toString(tühiMaa.income()));
+
+                                pollumaaHaArv.setText(Integer.toString(põlluMaa.getMaa()));
+                                pollumaaHaSek.setText(Integer.toString(põlluMaa.getAlgIps()));
+                                pollumaaHind.setText(Integer.toString(põlluMaa.cost()));
+                                pollumaaSaadOsta.setText("0");
+                                pollumaaSek.setText(Integer.toString(põlluMaa.income()));
+
+                                karjamaaHaArv.setText(Integer.toString(karjaMaa.getMaa()));
+                                karjamaaHaSek.setText(Integer.toString(karjaMaa.getAlgIps()));
+                                karjamaaHind.setText(Integer.toString(karjaMaa.cost()));
+                                karjamaaSaadOsta.setText("0");
+                                karjamaaSek.setText(Integer.toString(karjaMaa.income()));
+
+                                hotellimaaHaArv.setText(Integer.toString(hotellMaa.getMaa()));
+                                hotellimaaHaSek.setText(Integer.toString(hotellMaa.getAlgIps()));
+                                hotellimaaHind.setText(Integer.toString(hotellMaa.cost()));
+                                hotellimaaSaadOsta.setText("0");
+                                hotellimaaSek.setText(Integer.toString(hotellMaa.income()));
+                            }
+                        });
                     }
 
                 }
@@ -357,7 +385,10 @@ public class Main extends Application{
 
 
 
+
+
     public static void main(final String[] args)  {
+
         launch(args);
     }
 
@@ -375,5 +406,7 @@ public class Main extends Application{
     public static int kokkuIncome() {
         return tühiMaa.income() + karjaMaa.income() + põlluMaa.income() + hotellMaa.income();
     }
+
+
 }
 

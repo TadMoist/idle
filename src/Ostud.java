@@ -11,6 +11,8 @@ public class Ostud {
             Main.tühiMaa.setAlgHind((int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i)));
         }
 
+
+
         if (tühiSumma >= Main.getRaha()) {
             Main.tühiMaa.setAlgHind(temporary);
             System.out.println("Pole piisavalt raha tehinguks");
