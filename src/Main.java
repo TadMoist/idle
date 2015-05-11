@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -21,16 +22,16 @@ public class Main extends Application{
     public static Maa hotellMaa = new Maa(100, 1000);
     private static int raha;
 
-   // private static boolean pressed = false;
+    // private static boolean pressed = false;
     //private static boolean end = false;
     //public static final Thread lõime = new Thread(new Checker());
 
     //public static void setEnd(boolean end) {
-        //Main.end = end;
+    //Main.end = end;
     //}
 
     //public static void setPressed(boolean pressed) {
-        //Main.pressed = pressed;
+    //Main.pressed = pressed;
     //}
 
     public static int getRaha() {
@@ -91,7 +92,7 @@ public class Main extends Application{
                         if (tühiSumma > Main.getRaha()) {
                             Main.tühiMaa.setAlgHind(temporary);
                         }
-                            else{
+                        else{
 
                             Main.payDay(-tühiSumma);
                             Main.tühiMaa.addMaa(kogus);
@@ -102,7 +103,7 @@ public class Main extends Application{
                 }
             });
         }
-            else{
+        else{
             maa.add(new Label("Muudan "),0,6);
 
             final TextField kast = new TextField();
@@ -269,12 +270,25 @@ public class Main extends Application{
 
 
 
-        HBox ulemine = new HBox();
-        ulemine.getChildren().addAll(new Label("Sissetulek sekundis: "),sissetulekSek);
+        GridPane ulemine = new GridPane();
+        ulemine.add(new Label("RAHA HETKEL: "), 0, 0);
+        final Text rahaHetkel = new Text("100");
+        ulemine.add(rahaHetkel,1,0);
+        ulemine.add(new Label("SISSETULEK SEK: "), 0, 1);
+        ulemine.add(sissetulekSek,1,1);
+        ulemine.setPadding(new Insets(0, 10, 10, 10));
+
         mainbp.setTop(ulemine);
+
+        HBox alumine = new HBox();
+        final Text mure = new Text("Teretulemast mangima");
+        alumine.getChildren().add(mure);
+        alumine.setPadding(new Insets(10, 10, 10, 10));
+        mainbp.setBottom(alumine);
 
         HBox mainh = new HBox();
         mainh.setSpacing(30);
+        mainh.setPadding(new Insets(10, 10, 10, 10));
 
 
         Label tuhimaa = new Label("TUHIMAA");
@@ -340,13 +354,11 @@ public class Main extends Application{
                 try {
                     Main.newGame();
                     while (true) {
-                        int tick = Update.getTick();
-                        Update.Tick();
-                        Thread.sleep(tick * 1000);
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
                                 sissetulekSek.setText(Integer.toString(Main.kokkuIncome()));
+                                rahaHetkel.setText(Integer.toString(Main.getRaha()));
 
                                 tuhimaaHaArv.setText(Integer.toString(tühiMaa.getMaa()));
                                 tuhimaaHaSek.setText(Integer.toString(tühiMaa.getAlgIps()));
@@ -372,6 +384,9 @@ public class Main extends Application{
                                 hotellimaaSek.setText(Integer.toString(hotellMaa.income()));
                             }
                         });
+                        int tick = Update.getTick();
+                        Update.Tick();
+                        Thread.sleep(tick * 1000);
                     }
 
                 }
@@ -394,7 +409,7 @@ public class Main extends Application{
 
 
     public static void newGame() {
-        Main.raha = 10000;
+        Main.raha = 100;
         tühiMaa.setMaa(1);
         //lõime.start();
     }
@@ -409,4 +424,3 @@ public class Main extends Application{
 
 
 }
-
