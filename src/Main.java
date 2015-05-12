@@ -41,17 +41,19 @@ public class Main extends Application{
     public static void payDay(int x) {
         raha += x;
     }
-    
-    public static int saabOsta(int algHind,int algMaa,int kogus) {
+
+    public static int saabOsta(int algHind,int algMaa,int kogus,int summa) {
 
         int raha = getRaha();
-        int summa = algHind;
+        int üheHind = algHind;
         if(summa > raha){
             return kogus;
         }
         else{
-            summa += (int) (algHind * Math.pow(1.1, algHind + kogus));
-            return saabOsta(summa,algMaa+1,kogus+1);
+
+            üheHind = (int) (algHind * Math.pow(1.1, algMaa + kogus));
+            summa += üheHind;
+            return saabOsta(üheHind,algMaa+1,kogus+1,summa);
         }
 
     }
@@ -77,9 +79,9 @@ public class Main extends Application{
         maa.add(maaHind, 1, 4);
         maa.add(new Label(" $"), 2, 4);
 
-        maa.add(new Label("Saad osta : "), 0, 5);
+        maa.add(new Label("Sul on raha, et osta: "), 0, 5);
         maa.add(saadOsta, 1, 5);
-        maa.add(new Label(" ha maad"), 2, 5);
+        maa.add(new Label(" ha "), 2, 5);
 
         if(tuupMaa.getText().equals("TUHIMAA")){
             maa.add(new Label("Ostan "),0,6);
@@ -278,7 +280,7 @@ public class Main extends Application{
 
 
         BorderPane mainbp = new BorderPane();
-        mainbp.setMinWidth(250);
+        mainbp.setMinWidth(1000);
 
         final Text  sissetulekSek = new Text("1");
 
@@ -348,7 +350,7 @@ public class Main extends Application{
 
         mainbp.setCenter(mainh);
 
-        Scene stseen1 = new Scene(mainbp, 900, 250, Color.SNOW);
+        Scene stseen1 = new Scene(mainbp, 1000, 250, Color.SNOW);
         peaLava.setScene(stseen1);
         peaLava.setTitle("IDLE MANG");
         peaLava.show();
@@ -378,24 +380,24 @@ public class Main extends Application{
                                 tuhimaaHaSek.setText(Integer.toString(tühiMaa.getAlgIps()));
                                 tuhimaaHind.setText(Integer.toString(tühiMaa.cost()));
                                 tuhimaaSek.setText(Integer.toString(tühiMaa.income()));
-                                tuhimaaSaadOsta.setText(Integer.toString(saabOsta(tühiMaa.getAlgHind(),tühiMaa.getMaa(),0)));
+                                tuhimaaSaadOsta.setText(Integer.toString(saabOsta(tühiMaa.getAlgHind(),tühiMaa.getMaa(),0,tühiMaa.getAlgHind())));
 
                                 pollumaaHaArv.setText(Integer.toString(põlluMaa.getMaa()));
                                 pollumaaHaSek.setText(Integer.toString(põlluMaa.getAlgIps()));
                                 pollumaaHind.setText(Integer.toString(põlluMaa.cost()));
-                                pollumaaSaadOsta.setText("0");
+                                pollumaaSaadOsta.setText(Integer.toString(saabOsta(põlluMaa.getAlgHind(),põlluMaa.getMaa(),0,põlluMaa.getAlgHind())));
                                 pollumaaSek.setText(Integer.toString(põlluMaa.income()));
 
                                 karjamaaHaArv.setText(Integer.toString(karjaMaa.getMaa()));
                                 karjamaaHaSek.setText(Integer.toString(karjaMaa.getAlgIps()));
                                 karjamaaHind.setText(Integer.toString(karjaMaa.cost()));
-                                karjamaaSaadOsta.setText("0");
+                                karjamaaSaadOsta.setText(Integer.toString(saabOsta(karjaMaa.getAlgHind(),karjaMaa.getMaa(),0,karjaMaa.getAlgHind())));
                                 karjamaaSek.setText(Integer.toString(karjaMaa.income()));
 
                                 hotellimaaHaArv.setText(Integer.toString(hotellMaa.getMaa()));
                                 hotellimaaHaSek.setText(Integer.toString(hotellMaa.getAlgIps()));
                                 hotellimaaHind.setText(Integer.toString(hotellMaa.cost()));
-                                hotellimaaSaadOsta.setText("0");
+                                hotellimaaSaadOsta.setText(Integer.toString(saabOsta(hotellMaa.getAlgHind(),hotellMaa.getMaa(),0,hotellMaa.getAlgHind())));
                                 hotellimaaSek.setText(Integer.toString(hotellMaa.income()));
                             }
                         });
@@ -424,7 +426,7 @@ public class Main extends Application{
 
 
     public static void newGame() {
-        Main.raha = 100;
+        Main.raha = 1000;
         tühiMaa.setMaa(1);
         //lõime.start();
     }
