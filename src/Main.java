@@ -1,6 +1,5 @@
 import javafx.application.Application;
 import javafx.application.Platform;
-
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -41,6 +40,23 @@ public class Main extends Application{
     public static void payDay(int x) {
         raha += x;
     }
+
+
+
+    public static int saabOsta(int algHind,int algMaa,int kogus) {
+
+        int raha = getRaha();
+        int summa = algHind;
+        if(summa > raha){
+            return kogus;
+        }
+        else{
+            summa += (int) (algHind * Math.pow(1.1, algHind + kogus));
+            return saabOsta(summa,algMaa+1,kogus+1);
+        }
+
+    }
+
 
 
 
@@ -291,7 +307,7 @@ public class Main extends Application{
         mainh.setPadding(new Insets(10, 10, 10, 10));
 
 
-        Label tuhimaa = new Label("TUHIMAA");
+        final Label tuhimaa = new Label("TUHIMAA");
         final Text tuhimaaHaArv = new Text("0");
 
 
@@ -299,7 +315,7 @@ public class Main extends Application{
 
         final Text tuhimaaSek = new Text("0");
         final Text tuhimaaHind = new Text("0");
-        Text tuhimaaSaadOsta = new Text("0");
+        final Text tuhimaaSaadOsta = new Text("0");
 
         maad(mainh,tuhimaa,tuhimaaHaArv, tuhimaaHaSek, tuhimaaSek, tuhimaaHind, tuhimaaSaadOsta);
 
@@ -364,6 +380,7 @@ public class Main extends Application{
                                 tuhimaaHaSek.setText(Integer.toString(tühiMaa.getAlgIps()));
                                 tuhimaaHind.setText(Integer.toString(tühiMaa.cost()));
                                 tuhimaaSek.setText(Integer.toString(tühiMaa.income()));
+                                tuhimaaSaadOsta.setText(Integer.toString(saabOsta(tühiMaa.getAlgHind(),tühiMaa.getMaa(),0)));
 
                                 pollumaaHaArv.setText(Integer.toString(põlluMaa.getMaa()));
                                 pollumaaHaSek.setText(Integer.toString(põlluMaa.getAlgIps()));
@@ -409,7 +426,7 @@ public class Main extends Application{
 
 
     public static void newGame() {
-        Main.raha = 100;
+        Main.raha = 1000;
         tühiMaa.setMaa(1);
         //lõime.start();
     }
