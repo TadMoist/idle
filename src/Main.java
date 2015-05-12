@@ -423,7 +423,7 @@ public class Main extends Application{
 
 
     public static void newGame() {
-        Main.raha = 1000;
+        Main.raha = 100;
         tühiMaa.setMaa(1);
         //lõime.start();
     }
