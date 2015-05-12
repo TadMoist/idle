@@ -1,16 +1,20 @@
 import javafx.application.Application;
 import javafx.application.Platform;
-
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -77,7 +81,7 @@ public class Main extends Application{
             maa.add(new Label(" ha "),2,6);
 
             Button ostaNupp = new Button("OSTA");
-            maa.add(ostaNupp,0,7);
+            maa.add(ostaNupp,1,7);
             ostaNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -98,8 +102,7 @@ public class Main extends Application{
                             Main.tühiMaa.addMaa(kogus);
                         }
                     }
-
-
+                    kast.clear();
                 }
             });
         }
@@ -138,6 +141,8 @@ public class Main extends Application{
                                 Main.tühiMaa.addMaa(-kogus);
                             }
                         }
+                        kast.clear();
+                        cb.valueProperty().set(null);
                     }
                 });
             }
@@ -185,8 +190,9 @@ public class Main extends Application{
                                 Main.põlluMaa.addMaa(kogus);
                                 Main.karjaMaa.addMaa(-kogus);
                             }
-
                         }
+                        kast.clear();
+                        cb.valueProperty().set(null);
                     }
                 });
             }
@@ -249,7 +255,8 @@ public class Main extends Application{
                                 Main.põlluMaa.addMaa(-kogus);
                             }
                         }
-
+                        kast.clear();
+                        cb.valueProperty().set(null);
                     }
                 });
             }
@@ -277,6 +284,7 @@ public class Main extends Application{
         ulemine.add(new Label("SISSETULEK SEK: "), 0, 1);
         ulemine.add(sissetulekSek,1,1);
         ulemine.setPadding(new Insets(0, 10, 10, 10));
+        ulemine.setStyle("-fx-background-color: #E0E6F8;");
 
         mainbp.setTop(ulemine);
 
@@ -285,10 +293,12 @@ public class Main extends Application{
         alumine.getChildren().add(mure);
         alumine.setPadding(new Insets(10, 10, 10, 10));
         mainbp.setBottom(alumine);
+        alumine.setStyle("-fx-background-color: #E0E6F8;");
 
         HBox mainh = new HBox();
         mainh.setSpacing(30);
         mainh.setPadding(new Insets(10, 10, 10, 10));
+        mainh.setAlignment(Pos.CENTER);
 
 
         Label tuhimaa = new Label("TUHIMAA");
@@ -334,7 +344,11 @@ public class Main extends Application{
 
         mainbp.setCenter(mainh);
 
-        Scene stseen1 = new Scene(mainbp, 900, 250, Color.SNOW);
+        mainbp.setStyle("-fx-background-color: #E6F8E0;");
+        Scene stseen1 = new Scene(mainbp, 1100, 350);
+        DoubleProperty fontSize = new SimpleDoubleProperty(14);
+        mainbp.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString(), ";"
+                ,"-fx-background-color: #E6F8E0;"));
         peaLava.setScene(stseen1);
         peaLava.setTitle("IDLE MANG");
         peaLava.show();
@@ -409,7 +423,7 @@ public class Main extends Application{
 
 
     public static void newGame() {
-        Main.raha = 100;
+        Main.raha = 1000;
         tühiMaa.setMaa(1);
         //lõime.start();
     }
