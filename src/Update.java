@@ -2,7 +2,7 @@
  * Created by Janek Timmas on 6.03.2015.
  */
 public class Update {
-    private static int tick = 3;
+    private static int tick = 1;
 
     public static int getTick() {
         return tick;

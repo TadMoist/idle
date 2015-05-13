@@ -1,6 +1,7 @@
 /**
  * Created by Johanna Järvsoo on 9.03.2015.
  */
+
 import java.util.Scanner;
 
 public class Menu {
@@ -15,38 +16,32 @@ public class Menu {
         System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
     }
 
-    public static void maaom(){
+    public static void maaom() {
         Maa meeles = Main.tühiMaa;
         while (true) {
             Scanner sc = new Scanner(System.in);
             String rida = sc.nextLine();
-            if (rida.equalsIgnoreCase("exit")){
+            if (rida.equalsIgnoreCase("exit")) {
                 break;
-            }
-            else if (rida.equalsIgnoreCase("tagasi")){
+            } else if (rida.equalsIgnoreCase("tagasi")) {
                 menu();
-            }
-            else if (rida.contains("ostan")){
+            } else if (rida.contains("ostan")) {
                 String[] temp = rida.split(" ");
                 Ostud.tühimaaOst(Integer.parseInt(temp[1]));
                 inf();
-            }
-            else if (rida.toLowerCase().contains("muudan")){
+            } else if (rida.toLowerCase().contains("muudan")) {
                 String[] temp = rida.split(" ");
-                if (meeles == Main.karjaMaa){
+                if (meeles == Main.karjaMaa) {
                     Ostud.karjamaaOst(Integer.parseInt(temp[1]));
-                }
-                else if (meeles == Main.põlluMaa){
+                } else if (meeles == Main.põlluMaa) {
                     Ostud.põllumaaOst(Integer.parseInt(temp[1]));
-                }
-                else if (meeles == Main.hotellMaa){
+                } else if (meeles == Main.hotellMaa) {
                     Ostud.hotelliOst(Integer.parseInt(temp[1]));
                 }
                 inf();
-            } else if (rida.equalsIgnoreCase("maa")){
+            } else if (rida.equalsIgnoreCase("maa")) {
                 inf();
-            }
-            else if(rida.equalsIgnoreCase("info")){
+            } else if (rida.equalsIgnoreCase("info")) {
                 System.out.println("INFO");
                 System.out.println("Tere tulemast!");
                 System.out.println("Te mängite hetkel idle mängu. Tegemist on mänguga, mis mängib ennast ise.");
@@ -55,26 +50,22 @@ public class Menu {
                 System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
                 System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
                 System.out.println("Ilusat mängu!");
-            }
-            else if(rida.equalsIgnoreCase("maakler")){
+            } else if (rida.equalsIgnoreCase("maakler")) {
                 System.out.println("MAAKLER");
                 System.out.println("Teil on hetkel " + Main.getRaha() + " eurot.");
                 System.out.println("Ühe hektari suuruse maatüki ostmine maksab " + Main.tühiMaa.cost() + "eurot.");
                 System.out.println("Kirjutage OSTAN + HA ARV, et osta üks ha tühja maad.");
                 System.out.println("Kirjutage EXIT, et minna tagasi mängima.");
                 System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
-            }
-            else if (rida.equalsIgnoreCase("kari")){
+            } else if (rida.equalsIgnoreCase("kari")) {
                 System.out.println("KARJAMAA");
                 tekst(Main.karjaMaa);
                 meeles = Main.karjaMaa;
-            }
-            else if (rida.equalsIgnoreCase("põld")){
+            } else if (rida.equalsIgnoreCase("põld")) {
                 System.out.println("PÕLLUMAA");
                 tekst(Main.põlluMaa);
                 meeles = Main.põlluMaa;
-            }
-            else if (rida.equalsIgnoreCase("hotell")){
+            } else if (rida.equalsIgnoreCase("hotell")) {
                 System.out.println("HOTELLID");
                 tekst(Main.hotellMaa);
                 meeles = Main.hotellMaa;
@@ -82,7 +73,7 @@ public class Menu {
         }
     }
 
-    public static void inf(){
+    public static void inf() {
         System.out.println("ÜLDINFO");
         System.out.println("Teil on hetkel " + Main.getRaha() + " eurot.");
         System.out.println("Teil on hetkel " + Main.tühiMaa.getMaa() + " ha tühja maad.");
@@ -97,7 +88,7 @@ public class Menu {
         System.out.println("Kirjutage TAGASI, et minna tagasi menüüssee.");
     }
 
-    public static void tekst(Maa tüüp){
+    public static void tekst(Maa tüüp) {
         System.out.println("Teil on hetkel " + Main.getRaha() + " eurot.");
         System.out.println("Üks ha seda maad toodab " + tüüp.getAlgIps() + " eurot tunnis.");
         System.out.println("Teil on hetkel " + tüüp.getMaa() + " ha seda maad.");

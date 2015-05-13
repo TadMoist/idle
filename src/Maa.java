@@ -27,15 +27,19 @@ public class Maa {
         return algHind;
     }
 
-    public void setAlgHind(int Hind) {this.algHind = Hind;}
+    public void setAlgHind(int Hind) {
+        this.algHind = Hind;
+    }
 
     public Maa(int faktor, int algHind) {
         this.algIps = faktor;
         this.algHind = algHind;
     }
+
     public int cost() {
-        return (int)(algHind * Math.pow(1.1, maa));
+        return (int) (algHind * Math.pow(1.1, maa));
     }
+
     public int income() {
         return maa * algIps;
     }

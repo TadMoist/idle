@@ -12,7 +12,6 @@ public class Ostud {
         }
 
 
-
         if (tühiSumma >= Main.getRaha()) {
             Main.tühiMaa.setAlgHind(temporary);
             System.out.println("Pole piisavalt raha tehinguks");
@@ -176,7 +175,7 @@ public class Ostud {
         }
     }
 
-    public static void hotelliOst(int kogus)   {
+    public static void hotelliOst(int kogus) {
 
         if (kogus <= Main.tühiMaa.getMaa() && kogus > Main.karjaMaa.getMaa() && kogus > Main.põlluMaa.getMaa()) {
             int temporary = Main.hotellMaa.getAlgHind();
