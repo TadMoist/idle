@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -38,6 +39,10 @@ public class Main extends Application {
         return raha;
     }
 
+    public static void setRaha(int raha) {
+        Main.raha = raha;
+    }
+
     public static void payDay(int x) {
         raha += x;
     }
@@ -50,11 +55,10 @@ public class Main extends Application {
             return kogus;
         } else {
 
-            üheHind = (int) (algHind * Math.pow(1.1, algMaa + kogus));
+            üheHind = (int) (algHind * Math.pow(1.1, algMaa));
             summa += üheHind;
             return saabOsta(üheHind, algMaa + 1, kogus + 1, summa);
         }
-
     }
 
 
@@ -87,32 +91,30 @@ public class Main extends Application {
             final TextField kast = new TextField();
             kast.setPrefWidth(20);
             maa.add(kast, 1, 6);
-
-            maa.add(new Label(" ha "), 2, 6);
-
-            Button ostaNupp = new Button("OSTA");
-            maa.add(ostaNupp, 0, 7);
-            ostaNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            kast.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
-                public void handle(MouseEvent event) {
-
+                public void handle(KeyEvent event) {
+                    mure.setText("");
                     try {
                         int kogus = Integer.parseInt(kast.getText());
                         int tühiSumma = 0;
+                        int algKogus = tühiMaa.getMaa();
+                        int algRaha = getRaha();
                         int temporary = Main.tühiMaa.getAlgHind();
                         for (int i = 0; i < kogus; i++) {
-                            tühiSumma += (int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i));
-                            Main.tühiMaa.setAlgHind((int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa() + i)));
+                            tühiSumma = (Main.tühiMaa.getAlgHind());
+                            Main.tühiMaa.setAlgHind((int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa())));
 
                             if (tühiSumma > Main.getRaha()) {
                                 Main.tühiMaa.setAlgHind(temporary);
+                                tühiMaa.setMaa(algKogus);
+                                setRaha(algRaha);
                                 throw new RahaPoleException();
                             } else {
                                 Main.payDay(-tühiSumma);
-                                Main.tühiMaa.addMaa(kogus);
+                                Main.tühiMaa.addMaa(1);
                             }
                         }
-
 
                     } catch (RahaPoleException rpe) {
                         mure.setText("Raha pole piisavalt");
@@ -121,9 +123,50 @@ public class Main extends Application {
                     } catch (NumberFormatException nfe) {
                         mure.setText("Vali maa ja sisesta kogus!");
                     }
+                    kast.clear();
                 }
-
             });
+            maa.add(new Label(" ha "), 2, 6);
+
+            Button ostaNupp = new Button("OSTA");
+            maa.add(ostaNupp, 0, 7);
+
+            ostaNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                           @Override
+                                           public void handle(MouseEvent event) {
+                                               mure.setText("");
+                                               try {
+                                                   int kogus = Integer.parseInt(kast.getText());
+                                                   int tühiSumma = 0;
+                                                   int algKogus = tühiMaa.getMaa();
+                                                   int algRaha = getRaha();
+                                                   int temporary = Main.tühiMaa.getAlgHind();
+                                                   for (int i = 0; i < kogus; i++) {
+                                                       tühiSumma = (Main.tühiMaa.getAlgHind());
+                                                       Main.tühiMaa.setAlgHind((int) (Main.tühiMaa.getAlgHind() * Math.pow(1.1, Main.tühiMaa.getMaa())));
+
+                                                       if (tühiSumma > Main.getRaha()) {
+                                                           Main.tühiMaa.setAlgHind(temporary);
+                                                           tühiMaa.setMaa(algKogus);
+                                                           setRaha(algRaha);
+                                                           throw new RahaPoleException();
+                                                       } else {
+                                                           Main.payDay(-tühiSumma);
+                                                           Main.tühiMaa.addMaa(1);
+                                                       }
+                                                   }
+
+                                               } catch (RahaPoleException rpe) {
+                                                   mure.setText("Raha pole piisavalt");
+                                               } catch (NullPointerException ne) {
+                                                   mure.setText("Vali maa ja sisesta kogus!");
+                                               } catch (NumberFormatException nfe) {
+                                                   mure.setText("Vali maa ja sisesta kogus!");
+                                               }
+                                               kast.clear();
+                                           }
+                                       }
+            );
         } else {
             maa.add(new Label("Muudan "), 0, 6);
 
@@ -141,6 +184,7 @@ public class Main extends Application {
                 muudaNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
+                        mure.setText("");
                         try {
 
                             int kogus = Integer.parseInt(kast.getText());
@@ -148,17 +192,21 @@ public class Main extends Application {
                             if (kogus <= Main.tühiMaa.getMaa()) {
                                 int temporary = Main.karjaMaa.getAlgHind();
                                 int karjamaaSumma = 0;
+                                int algKogus = karjaMaa.getMaa();
+                                int algRaha = getRaha();
                                 for (int i = 0; i < kogus; i++) {
-                                    karjamaaSumma += (int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i));
-                                    Main.karjaMaa.setAlgHind((int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa() + i)));
+                                    karjamaaSumma += (Main.karjaMaa.getAlgHind());
+                                    Main.karjaMaa.setAlgHind((int) (Main.karjaMaa.getAlgHind() * Math.pow(1.1, Main.karjaMaa.getMaa())));
                                 }
                                 if (karjamaaSumma > Main.getRaha()) {
                                     Main.karjaMaa.setAlgHind(temporary);
+                                    karjaMaa.setMaa(algKogus);
+                                    setRaha(algRaha);
                                     throw new RahaPoleException();
                                 } else if (cb.getValue().equals("tuhimaa")) {
                                     Main.payDay(-karjamaaSumma);
-                                    Main.karjaMaa.addMaa(kogus);
-                                    Main.tühiMaa.addMaa(-kogus);
+                                    Main.karjaMaa.addMaa(1);
+                                    Main.tühiMaa.addMaa(-1);
                                 }
                             }
 
@@ -166,9 +214,10 @@ public class Main extends Application {
                             mure.setText("Vali maa ja sisesta kogus!");
                         } catch (NumberFormatException nfe) {
                             mure.setText("Vali maa ja sisesta kogus!");
-                        } catch (RahaPoleException r){
+                        } catch (RahaPoleException r) {
                             mure.setText("Raha pole piisavalt");
                         }
+                        kast.clear();
                     }
                 });
             } else if (tuupMaa.getText().equals("POLLUMAA")) {
@@ -180,35 +229,45 @@ public class Main extends Application {
                 muudaNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
+                        mure.setText("");
                         try {
                             int kogus = Integer.parseInt(kast.getText());
                             if (cb.getValue().equals("tuhimaa") && kogus <= tühiMaa.getMaa()) {
                                 int temporary = Main.põlluMaa.getAlgHind();
                                 int põllumaaSumma = 0;
+                                int algKogus = põlluMaa.getMaa();
+                                int algRaha = getRaha();
                                 for (int i = 0; i < kogus; i++) {
-                                    põllumaaSumma += (int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i));
-                                    Main.põlluMaa.setAlgHind((int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i)));
+                                    põllumaaSumma += Main.põlluMaa.getAlgHind();
+                                    Main.põlluMaa.setAlgHind((int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa())));
                                 }
 
                                 if (põllumaaSumma > Main.getRaha()) {
                                     Main.põlluMaa.setAlgHind(temporary);
+                                    põlluMaa.setMaa(algKogus);
+                                    setRaha(algRaha);
                                     throw new RahaPoleException();
                                 } else {
                                     Main.payDay(-põllumaaSumma);
-                                    Main.põlluMaa.addMaa(kogus);
-                                    Main.tühiMaa.addMaa(-kogus);
+                                    Main.põlluMaa.addMaa(1);
+                                    Main.tühiMaa.addMaa(-1);
                                 }
 
                             } else if (cb.getValue().equals("karjamaa") && kogus <= karjaMaa.getMaa()) {
                                 int temporary = Main.põlluMaa.getAlgHind();
                                 int põllumaaSumma = 0;
+                                int algKogus = põlluMaa.getMaa();
+                                int algRaha = getRaha();
                                 for (int i = 0; i < kogus; i++) {
-                                    põllumaaSumma += (int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i));
-                                    Main.põlluMaa.setAlgHind((int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa() + i)));
+                                    põllumaaSumma += Main.põlluMaa.getAlgHind();
+                                    Main.põlluMaa.setAlgHind((int) (Main.põlluMaa.getAlgHind() * Math.pow(1.1, Main.põlluMaa.getMaa())));
                                 }
 
                                 if (põllumaaSumma > Main.getRaha()) {
                                     Main.põlluMaa.setAlgHind(temporary);
+                                    põlluMaa.setMaa(algKogus);
+                                    setRaha(algRaha);
+                                    throw new RahaPoleException();
                                 } else {
                                     Main.payDay(-põllumaaSumma);
                                     Main.põlluMaa.addMaa(kogus);
@@ -220,9 +279,10 @@ public class Main extends Application {
                             mure.setText("Vali maa ja sisesta kogus!");
                         } catch (NumberFormatException nfe) {
                             mure.setText("Vali maa ja sisesta kogus!");
-                        } catch (RahaPoleException r){
+                        } catch (RahaPoleException r) {
                             mure.setText("Raha pole piisavalt");
                         }
+                        kast.clear();
                     }
                 });
             } else if (tuupMaa.getText().equals("HOTELLIMAA")) {
@@ -234,36 +294,46 @@ public class Main extends Application {
                 muudaNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
+                        mure.setText("");
                         try {
                             int kogus = Integer.parseInt(kast.getText());
                             if (cb.getValue().equals("tuhimaa") && kogus <= tühiMaa.getMaa()) {
                                 int temporary = Main.hotellMaa.getAlgHind();
                                 int hotelliSumma = 0;
+                                int algKogus = hotellMaa.getMaa();
+                                int algRaha = getRaha();
                                 for (int i = 0; i < kogus; i++) {
-                                    hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
-                                    Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+                                    hotelliSumma += Main.hotellMaa.getAlgHind();
+                                    Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa())));
                                 }
 
                                 if (hotelliSumma > Main.getRaha()) {
                                     Main.hotellMaa.setAlgHind(temporary);
+                                    hotellMaa.setMaa(algKogus);
+                                    setRaha(algRaha);
                                     throw new RahaPoleException();
                                 } else {
                                     Main.payDay(-hotelliSumma);
-                                    Main.hotellMaa.addMaa(kogus);
-                                    Main.tühiMaa.addMaa(-kogus);
+                                    Main.hotellMaa.addMaa(1);
+                                    Main.tühiMaa.addMaa(-1);
                                 }
 
 
                             } else if (cb.getValue().equals("karjamaa") && kogus <= karjaMaa.getMaa()) {
                                 int temporary = Main.hotellMaa.getAlgHind();
                                 int hotelliSumma = 0;
+                                int algKogus = hotellMaa.getMaa();
+                                int algRaha = getRaha();
                                 for (int i = 0; i < kogus; i++) {
-                                    hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
-                                    Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+                                    hotelliSumma += Main.hotellMaa.getAlgHind();
+                                    Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa())));
                                 }
 
                                 if (hotelliSumma > Main.getRaha()) {
                                     Main.hotellMaa.setAlgHind(temporary);
+                                    hotellMaa.setMaa(algKogus);
+                                    setRaha(algRaha);
+                                    throw new RahaPoleException();
                                 } else {
                                     Main.payDay(-hotelliSumma);
                                     Main.hotellMaa.addMaa(kogus);
@@ -272,13 +342,18 @@ public class Main extends Application {
                             } else if (cb.getValue().equals("pollumaa") && kogus <= põlluMaa.getMaa()) {
                                 int temporary = Main.hotellMaa.getAlgHind();
                                 int hotelliSumma = 0;
+                                int algKogus = hotellMaa.getMaa();
+                                int algRaha = getRaha();
                                 for (int i = 0; i < kogus; i++) {
-                                    hotelliSumma += (int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i));
-                                    Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa() + i)));
+                                    hotelliSumma += Main.hotellMaa.getAlgHind();
+                                    Main.hotellMaa.setAlgHind((int) (Main.hotellMaa.getAlgHind() * Math.pow(1.1, Main.hotellMaa.getMaa())));
                                 }
 
                                 if (hotelliSumma > Main.getRaha()) {
                                     Main.hotellMaa.setAlgHind(temporary);
+                                    hotellMaa.setMaa(algKogus);
+                                    setRaha(algRaha);
+                                    throw new RahaPoleException();
                                 } else {
                                     Main.payDay(-hotelliSumma);
                                     Main.hotellMaa.addMaa(kogus);
@@ -290,9 +365,10 @@ public class Main extends Application {
                             mure.setText("Vali maa ja sisesta kogus!");
                         } catch (NumberFormatException nfe) {
                             mure.setText("Vali maa ja sisesta kogus!");
-                        } catch (RahaPoleException r){
+                        } catch (RahaPoleException r) {
                             mure.setText("Raha pole piisavalt");
                         }
+                        kast.clear();
                     }
                 });
             }
@@ -447,7 +523,6 @@ public class Main extends Application {
 
     public static void newGame() {
         Main.raha = 1000;
-        tühiMaa.setMaa(1);
 
     }
 

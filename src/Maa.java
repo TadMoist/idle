@@ -37,7 +37,7 @@ public class Maa {
     }
 
     public int cost() {
-        return (int) (algHind * Math.pow(1.1, maa));
+        return (int) (this.algHind * 1.1);
     }
 
     public int income() {
