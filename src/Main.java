@@ -1,6 +1,5 @@
 import javafx.application.Application;
 import javafx.application.Platform;
-
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -15,6 +14,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main extends Application {
     public static Maa tühiMaa = new Maa(1, 100);
@@ -389,6 +391,7 @@ public class Main extends Application {
 
 
         GridPane ulemine = new GridPane();
+
         ulemine.add(new Label("RAHA HETKEL: "), 0, 0);
         final Text rahaHetkel = new Text("100");
         ulemine.add(rahaHetkel, 1, 0);
@@ -404,7 +407,129 @@ public class Main extends Application {
         alumine.setPadding(new Insets(10, 10, 10, 10));
         mainbp.setBottom(alumine);
 
+
+
+        Button saveNupp = new Button("Salvesta");
+        saveNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                File fail = new File("C:/Temp/IdleSave.txt");
+                if(fail.exists()){
+                    fail.delete();
+                    File uusFail = new File("C:/Temp/IdleSave.txt");
+                    try {
+                        BufferedWriter bw = new BufferedWriter(new FileWriter(uusFail, false));
+
+                        bw.write(Integer.toString(getRaha()));
+                        bw.newLine();
+
+                        bw.write(Integer.toString(tühiMaa.getMaa()));
+                        bw.newLine();
+                        bw.write(Integer.toString(tühiMaa.getAlgHind()));
+
+                        bw.newLine();
+                        bw.write(Integer.toString(põlluMaa.getMaa()));
+                        bw.newLine();
+                        bw.write(Integer.toString(põlluMaa.getAlgHind()));
+
+                        bw.newLine();
+                        bw.write(Integer.toString(karjaMaa.getMaa()));
+                        bw.newLine();
+                        bw.write(Integer.toString(karjaMaa.getAlgHind()));
+
+                        bw.newLine();
+                        bw.write(Integer.toString(hotellMaa.getMaa()));
+                        bw.newLine();
+                        bw.write(Integer.toString(hotellMaa.getAlgHind()));
+
+                        bw.close();
+                    }
+                    catch (IOException io){
+                        mure.setText("Salvestamisel tekkis viga!");
+                    }
+                }
+                else{
+                    try {
+                        BufferedWriter bw = new BufferedWriter(new FileWriter(fail, false));
+
+                        bw.write(Integer.toString(getRaha()));
+                        bw.newLine();
+
+                        bw.write(Integer.toString(tühiMaa.getMaa()));
+                        bw.newLine();
+                        bw.write(Integer.toString(tühiMaa.getAlgHind()));
+
+                        bw.newLine();
+                        bw.write(Integer.toString(põlluMaa.getMaa()));
+                        bw.newLine();
+                        bw.write(Integer.toString(põlluMaa.getAlgHind()));
+
+                        bw.newLine();
+                        bw.write(Integer.toString(karjaMaa.getMaa()));
+                        bw.newLine();
+                        bw.write(Integer.toString(karjaMaa.getAlgHind()));
+
+                        bw.newLine();
+                        bw.write(Integer.toString(hotellMaa.getMaa()));
+                        bw.newLine();
+                        bw.write(Integer.toString(hotellMaa.getAlgHind()));
+
+                        bw.close();
+                    }
+                    catch (IOException io) {
+                        mure.setText("Salvestamisel tekkis viga!");
+                    }
+                }
+            }
+        });
+
+        Button laadiNupp = new Button("Lae viimane");
+        laadiNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                File fail = new File("C:/Temp/IdleSave.txt");
+                if(fail.exists()) {
+                    try {
+
+                        Scanner s = new Scanner(fail);
+                        ArrayList<String> list = new ArrayList<String>();
+                        while (s.hasNext()){
+                            list.add(s.next());
+                        }
+                        s.close();
+
+                        setRaha(Integer.parseInt(list.get(0)));
+
+                        tühiMaa.setMaa(Integer.parseInt(list.get(1)));
+                        tühiMaa.setAlgHind(Integer.parseInt(list.get(2)));
+
+                        põlluMaa.setMaa(Integer.parseInt(list.get(3)));
+                        põlluMaa.setAlgHind(Integer.parseInt(list.get(4)));
+
+                        karjaMaa.setMaa(Integer.parseInt(list.get(5)));
+                        karjaMaa.setAlgHind(Integer.parseInt(list.get(6)));
+
+                        hotellMaa.setMaa(Integer.parseInt(list.get(7)));
+                        hotellMaa.setAlgHind(Integer.parseInt(list.get(8)));
+
+
+                    } catch (IOException io) {
+                        mure.setText("Laadimisel tekkis viga!");
+                    }
+                }
+                else{
+                    mure.setText("Salvestusi pole!");
+                }
+            }
+        });
+
+
+        ulemine.add(saveNupp,2,0);
+        ulemine.add(laadiNupp,3,0);
+        ulemine.setHgap(20);
+
         HBox mainh = new HBox();
+
         mainh.setSpacing(30);
         mainh.setPadding(new Insets(10, 10, 10, 10));
 
