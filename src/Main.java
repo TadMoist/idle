@@ -413,35 +413,32 @@ public class Main extends Application {
         saveNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                File fail = new File("C:/Temp/IdleSave.txt");
+                File fail = new File("c:\\Users\\Spikey\\IdleSave.txt");
                 if(fail.exists()){
-                    fail.delete();
-                    File uusFail = new File("C:/Temp/IdleSave.txt");
+                    File uusFail = new File("c:\\Users\\Spikey\\IdleSave.txt");
                     try {
-                        BufferedWriter bw = new BufferedWriter(new FileWriter(uusFail, false));
+                        PrintWriter bw = new PrintWriter("c:\\Users\\Spikey\\IdleSave.txt", "UTF-8");
 
-                        bw.write(Integer.toString(getRaha()));
-                        bw.newLine();
+                        bw.println(Integer.toString(getRaha()));
 
-                        bw.write(Integer.toString(tühiMaa.getMaa()));
-                        bw.newLine();
-                        bw.write(Integer.toString(tühiMaa.getAlgHind()));
+                        bw.println(Integer.toString(tühiMaa.getMaa()));
+                        bw.println(Integer.toString(tühiMaa.getAlgHind()));
 
-                        bw.newLine();
-                        bw.write(Integer.toString(põlluMaa.getMaa()));
-                        bw.newLine();
-                        bw.write(Integer.toString(põlluMaa.getAlgHind()));
 
-                        bw.newLine();
-                        bw.write(Integer.toString(karjaMaa.getMaa()));
-                        bw.newLine();
-                        bw.write(Integer.toString(karjaMaa.getAlgHind()));
+                        bw.println(Integer.toString(põlluMaa.getMaa()));
 
-                        bw.newLine();
-                        bw.write(Integer.toString(hotellMaa.getMaa()));
-                        bw.newLine();
-                        bw.write(Integer.toString(hotellMaa.getAlgHind()));
+                        bw.println(Integer.toString(põlluMaa.getAlgHind()));
 
+
+                        bw.println(Integer.toString(karjaMaa.getMaa()));
+
+                        bw.println(Integer.toString(karjaMaa.getAlgHind()));
+
+
+                        bw.println(Integer.toString(hotellMaa.getMaa()));
+
+                        bw.println(Integer.toString(hotellMaa.getAlgHind()));
+                        mure.setText("Salvestatud!");
                         bw.close();
                     }
                     catch (IOException io){
@@ -450,30 +447,20 @@ public class Main extends Application {
                 }
                 else{
                     try {
-                        BufferedWriter bw = new BufferedWriter(new FileWriter(fail, false));
+                        PrintWriter bw = new PrintWriter("c:\\Users\\Spikey\\IdleSave.txt", "UTF-8");
 
-                        bw.write(Integer.toString(getRaha()));
-                        bw.newLine();
+                        bw.println(Integer.toString(getRaha()));
 
-                        bw.write(Integer.toString(tühiMaa.getMaa()));
-                        bw.newLine();
-                        bw.write(Integer.toString(tühiMaa.getAlgHind()));
+                        bw.println(Integer.toString(tühiMaa.getMaa()));
+                        bw.println(Integer.toString(tühiMaa.getAlgHind()));
 
-                        bw.newLine();
-                        bw.write(Integer.toString(põlluMaa.getMaa()));
-                        bw.newLine();
-                        bw.write(Integer.toString(põlluMaa.getAlgHind()));
-
-                        bw.newLine();
-                        bw.write(Integer.toString(karjaMaa.getMaa()));
-                        bw.newLine();
-                        bw.write(Integer.toString(karjaMaa.getAlgHind()));
-
-                        bw.newLine();
-                        bw.write(Integer.toString(hotellMaa.getMaa()));
-                        bw.newLine();
-                        bw.write(Integer.toString(hotellMaa.getAlgHind()));
-
+                        bw.println(Integer.toString(põlluMaa.getMaa()));
+                        bw.println(Integer.toString(põlluMaa.getAlgHind()));
+                        bw.println(Integer.toString(karjaMaa.getMaa()));
+                        bw.println(Integer.toString(karjaMaa.getAlgHind()));
+                        bw.println(Integer.toString(hotellMaa.getMaa()));
+                        bw.println(Integer.toString(hotellMaa.getAlgHind()));
+                        mure.setText("Salvestatud!");
                         bw.close();
                     }
                     catch (IOException io) {
@@ -487,7 +474,7 @@ public class Main extends Application {
         laadiNupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                File fail = new File("C:/Temp/IdleSave.txt");
+                File fail = new File("c:\\Users\\Spikey\\IdleSave.txt");
                 if(fail.exists()) {
                     try {
 
@@ -511,7 +498,7 @@ public class Main extends Application {
 
                         hotellMaa.setMaa(Integer.parseInt(list.get(7)));
                         hotellMaa.setAlgHind(Integer.parseInt(list.get(8)));
-
+                        mure.setText("Laetud!");
 
                     } catch (IOException io) {
                         mure.setText("Laadimisel tekkis viga!");
